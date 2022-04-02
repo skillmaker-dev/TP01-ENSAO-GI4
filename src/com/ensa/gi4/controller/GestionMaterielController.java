@@ -1,6 +1,7 @@
 package com.ensa.gi4.controller;
 
 import com.ensa.gi4.datatabase.MaterielDAO;
+import com.ensa.gi4.modele.Chaise;
 import com.ensa.gi4.modele.Livre;
 import com.ensa.gi4.modele.Materiel;
 import com.ensa.gi4.service.api.AllocationMaterielService;
@@ -43,15 +44,52 @@ public class GestionMaterielController {
             listerMateriel();
         } else if ("2".equals(next)) {
             //traitement pour lire le donnees user
-            //simple exemple de test
-            Livre l = new Livre(5,"livre 1 ","Author","2020" ,"Livre description");
-            ajouterMateriel(l);
+            System.out.println("Veuillez entrer type de materiel a ajouter, 1 pour livre, 2 pour chaise");
+            int type = scanner.nextInt();
+
+            if(type == 1)
+            {
+                System.out.println("id ?");
+                int id = scanner.nextInt();
+                System.out.println("name ?");
+                String nom = scanner.next();
+                System.out.println("author ?");
+                String author = scanner.next();
+                System.out.println("year ?");
+                String year = scanner.next();
+                System.out.println("plot ?");
+                String plot = scanner.next();
+                Livre l = new Livre(id,nom,author,year ,plot);
+                ajouterMateriel(l);
+            }
+            else if(type == 2)
+            {
+                System.out.println("id ?");
+                int id = scanner.nextInt();
+                System.out.println("name ?");
+                String nom = scanner.next();
+                System.out.println("type ?");
+                String ctype = scanner.next();
+                System.out.println("price ?");
+                double price = scanner.nextDouble();
+
+                Chaise c = new Chaise(id,nom,ctype,price);
+                ajouterMateriel(c);
+            }
+
+
         } else if ("3".equals(next)) {
             //traitement pour lire donnees
-            supprimerMateriel(5);
+            System.out.println("Veuillez entrer id de materiel a supprimer");
+            int id = scanner.nextInt();
+            supprimerMateriel(id);
         } else if ("4".equals(next)) {
             //traitement pour lire donnees
-            allouerMateriel(2,5);
+            System.out.println("Veuillez entrer id de materiel a allouer");
+            int id = scanner.nextInt();
+            System.out.println("Veuillez entrer nombre de jours");
+            int jrs = scanner.nextInt();
+            allouerMateriel(id,jrs);
         }
         else if ("5".equals(next)) {
             //traitement pour lire donnees
