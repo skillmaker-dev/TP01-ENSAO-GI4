@@ -93,7 +93,7 @@ public class GestionMaterielController {
         int id = scanner.nextInt();
         Materiel mat = gestionMaterielService.getMateriel(id);
 
-        if(mat instanceof Chaise)
+        if(mat instanceof Livre)
         {
             System.out.println("new id ?");
             int newid = scanner.nextInt();
@@ -108,7 +108,7 @@ public class GestionMaterielController {
             Livre l = new Livre(id,nom,author,year ,plot);
             gestionMaterielService.updateMateriel(id,l);
         }
-        else if(mat instanceof Livre)
+        else if(mat instanceof Chaise)
         {
             System.out.println("new id ?");
             int newid = scanner.nextInt();
