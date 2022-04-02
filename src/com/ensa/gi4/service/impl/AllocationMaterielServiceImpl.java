@@ -4,10 +4,12 @@ import com.ensa.gi4.datatabase.MaterielDAO;
 import com.ensa.gi4.modele.Materiel;
 import com.ensa.gi4.service.api.AllocationMaterielService;
 
+import java.util.List;
+
 public class AllocationMaterielServiceImpl implements AllocationMaterielService {
 
     private MaterielDAO materiel;
-    private MaterielDAO materielPrototype;
+
 
 
     public void setMaterielDao(MaterielDAO materiel) {
@@ -15,21 +17,25 @@ public class AllocationMaterielServiceImpl implements AllocationMaterielService 
         this.materiel = materiel;
     }
 
-    public void setMaterielDaoPrototype(MaterielDAO materiel) {
-        // injection par accesseur
-        this.materielPrototype = materiel;
-    }
 
     @Override
     public void allouerMateriel(int id, int nbreJrs) {
+        this.materiel.addToMaterielAlloue(id);
         this.materiel.deleteMateriel(id);
         String data = "Materiel Alloué pour " + nbreJrs + " Jours";
+        System.out.println(data);
     }
 
     @Override
     public void rendreMateriel(int id) {
-       Materiel m =  this.materielPrototype.getMateriel(id);
+       Materiel m =  this.materiel.getFromMaterielAlloue(id);
+       this.materiel.removeFromMaterielAlloue(id);
        this.materiel.addMateriel(m);
+    }
+
+    @Override
+    public List<Materiel> listerMateriel() {
+        return materiel.getMaterielsAlloue();
     }
 
 

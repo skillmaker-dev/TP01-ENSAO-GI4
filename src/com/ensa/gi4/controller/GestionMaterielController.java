@@ -22,6 +22,13 @@ public class GestionMaterielController {
             System.out.println(m.getName());
         }
     }
+    public void listerMaterielAlloue()
+    {
+        for (Materiel m:
+                allocationMaterielService.listerMateriel()) {
+            System.out.println(m.getName());
+        }
+    }
     public void ajouterMateriel() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Veuillez entrer type de materiel a ajouter, 1 pour livre, 2 pour chaise");
@@ -82,11 +89,11 @@ public class GestionMaterielController {
     public void modifierMateriel()
     {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Veuillez entrer type de materiel a modifier, 1 pour livre, 2 pour chaise");
-        int type = scanner.nextInt();
         System.out.println("Veuillez entrer id de materiel a modifier");
         int id = scanner.nextInt();
-        if(type == 1)
+        Materiel mat = gestionMaterielService.getMateriel(id);
+
+        if(mat instanceof Chaise)
         {
             System.out.println("new id ?");
             int newid = scanner.nextInt();
@@ -101,7 +108,7 @@ public class GestionMaterielController {
             Livre l = new Livre(id,nom,author,year ,plot);
             gestionMaterielService.updateMateriel(id,l);
         }
-        else if(type == 2)
+        else if(mat instanceof Livre)
         {
             System.out.println("new id ?");
             int newid = scanner.nextInt();
@@ -123,6 +130,7 @@ public class GestionMaterielController {
         System.out.println("4- pour allouer un matériel, entrer 4");
         System.out.println("5- pour rendre un matériel, entrer 5");
         System.out.println("6- pour modifier un matériel, entrer 6");
+        System.out.println("7- pour lister materiels alloués 7");
         System.out.println("0- pour sortir de l'application, entrer 0");
         Scanner scanner = new Scanner(System.in);
         String next = scanner.next();
@@ -142,6 +150,9 @@ public class GestionMaterielController {
         }
         else if ("6".equals(next)) {
             modifierMateriel();
+        }
+        else if ("7".equals(next)) {
+            listerMaterielAlloue();
         }else {
             System.out.println("choix invalide");
         }

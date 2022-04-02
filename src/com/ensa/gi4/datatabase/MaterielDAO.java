@@ -16,14 +16,68 @@ public class MaterielDAO implements GestionMaterielService {
     }
 
     List<Materiel> materiels;
+    List<Materiel> materielsAlloue;
 
     public MaterielDAO() {
         this.materiels = new ArrayList<>();
+        this.materielsAlloue = new ArrayList<>();
         Livre livre1 = new Livre(1,"The Hunger Games","Suzanne Collins", "2011","The Hunger Games is a 2008 dystopian novel by the American writer Suzanne Collins. It is written in the perspective of 16-year-old Katniss Everdeen, who lives in the future, post-apocalyptic nation of Panem in North America.");
         Chaise chaise1 = new Chaise(2,"Ikea Chair","ArmChair",400.5);
 
         materiels.add(livre1);
         materiels.add(chaise1);
+    }
+
+    public void addToMaterielAlloue(int id)
+    {
+        Materiel materielToAdd = null;
+        for (Materiel materiel:
+                materiels) {
+            if (materiel.getId() == id)
+            {
+                materielToAdd = materiel;
+                break;
+            }
+
+
+        }
+        this.materielsAlloue.add(materielToAdd);
+    }
+    public void removeFromMaterielAlloue(int id)
+    {
+        Materiel materielToDelete = null;
+        for (Materiel materiel:
+                materielsAlloue) {
+            if (materiel.getId() == id)
+            {
+                materielToDelete = materiel;
+                break;
+            }
+
+
+        }
+        this.materielsAlloue.remove(materielToDelete);
+    }
+
+    public Materiel getFromMaterielAlloue(int id)
+    {
+        Materiel materielToGet = null;
+        for (Materiel materiel:
+                materielsAlloue) {
+            if (materiel.getId() == id)
+            {
+                materielToGet = materiel;
+                break;
+            }
+
+
+        }
+        return materielToGet;
+    }
+
+    public List<Materiel> getMaterielsAlloue()
+    {
+        return this.materielsAlloue;
     }
 
     @Override
@@ -43,7 +97,7 @@ public class MaterielDAO implements GestionMaterielService {
 
     @Override
     public void deleteMateriel(int id) {
-        int a;
+
         Materiel materielToDelete = null;
         for (Materiel materiel:
                 materiels) {

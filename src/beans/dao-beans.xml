@@ -4,7 +4,6 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <bean id="materielDAO" class ="com.ensa.gi4.datatabase.MaterielDAO" factory-method="getInstance"/>
-    <bean id="materielDAOPrototype" class ="com.ensa.gi4.datatabase.MaterielDAO" factory-method="getInstance"/>
 
     <bean id="gestionMaterielService" class="com.ensa.gi4.service.impl.GestionMaterielServiceImpl">
         <property name="materielDao" ref="materielDAO" />
@@ -12,7 +11,6 @@
 
 
     <bean id="allocationMaterielService" class="com.ensa.gi4.service.impl.AllocationMaterielServiceImpl" scope="prototype">
-        <property name="materielDaoPrototype" ref="materielDAOPrototype" />
         <property name="materielDao" ref="materielDAO" />
     </bean>
 
