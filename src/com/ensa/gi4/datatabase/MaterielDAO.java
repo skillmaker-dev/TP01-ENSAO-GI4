@@ -3,12 +3,11 @@ package com.ensa.gi4.datatabase;
 import com.ensa.gi4.modele.Chaise;
 import com.ensa.gi4.modele.Livre;
 import com.ensa.gi4.modele.Materiel;
-import com.ensa.gi4.service.api.GestionMaterielService;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MaterielDAO implements GestionMaterielService {
+public class MaterielDAO implements IMaterielDAO {
 
     private static MaterielDAO singleton = new MaterielDAO();
     public static MaterielDAO getInstance(){
@@ -27,7 +26,7 @@ public class MaterielDAO implements GestionMaterielService {
         materiels.add(livre1);
         materiels.add(chaise1);
     }
-
+    @Override
     public void addToMaterielAlloue(int id)
     {
         Materiel materielToAdd = null;
@@ -43,6 +42,7 @@ public class MaterielDAO implements GestionMaterielService {
         }
         this.materielsAlloue.add(materielToAdd);
     }
+    @Override
     public void removeFromMaterielAlloue(int id)
     {
         Materiel materielToDelete = null;
@@ -58,7 +58,7 @@ public class MaterielDAO implements GestionMaterielService {
         }
         this.materielsAlloue.remove(materielToDelete);
     }
-
+    @Override
     public Materiel getFromMaterielAlloue(int id)
     {
         Materiel materielToGet = null;
@@ -74,15 +74,10 @@ public class MaterielDAO implements GestionMaterielService {
         }
         return materielToGet;
     }
-
+    @Override
     public List<Materiel> getMaterielsAlloue()
     {
         return this.materielsAlloue;
-    }
-
-    @Override
-    public void init() {
-        System.out.println("inititialisation du service");
     }
 
     @Override
