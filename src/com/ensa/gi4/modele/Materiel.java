@@ -1,7 +1,8 @@
 package com.ensa.gi4.modele;
 
 public abstract class Materiel {
-    private String name;
+    protected int id;
+    protected String name;
 
     public String getName() {
         return name;
@@ -9,5 +10,9 @@ public abstract class Materiel {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getId() {
+        return id;
     }
 }
