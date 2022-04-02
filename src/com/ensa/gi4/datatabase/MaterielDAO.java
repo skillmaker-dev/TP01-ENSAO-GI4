@@ -82,11 +82,11 @@ public class MaterielDAO implements GestionMaterielService {
                 materiels) {
             if (m.getId() == id)
             {
-                materielToUpdate = materiel;
+                materielToUpdate = m;
                 break;
             }
 
         }
-        materielToUpdate = materiel;
+        materielToUpdate.setName(materiel.getName());
     }
 }

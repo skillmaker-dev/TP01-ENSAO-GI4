@@ -22,19 +22,107 @@ public class GestionMaterielController {
             System.out.println(m.getName());
         }
     }
-    public void ajouterMateriel(Materiel materiel) { gestionMaterielService.addMateriel(materiel); }
-    public void supprimerMateriel(int id) {
+    public void ajouterMateriel() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Veuillez entrer type de materiel a ajouter, 1 pour livre, 2 pour chaise");
+        int type = scanner.nextInt();
+
+        if(type == 1)
+        {
+            System.out.println("id ?");
+            int id = scanner.nextInt();
+            System.out.println("name ?");
+            String nom = scanner.next();
+            System.out.println("author ?");
+            String author = scanner.next();
+            System.out.println("year ?");
+            String year = scanner.next();
+            System.out.println("plot ?");
+            String plot = scanner.next();
+            Livre l = new Livre(id,nom,author,year ,plot);
+            gestionMaterielService.addMateriel(l);
+        }
+        else if(type == 2)
+        {
+            System.out.println("id ?");
+            int id = scanner.nextInt();
+            System.out.println("name ?");
+            String nom = scanner.next();
+            System.out.println("type ?");
+            String ctype = scanner.next();
+            System.out.println("price ?");
+            double price = scanner.nextDouble();
+
+            Chaise c = new Chaise(id,nom,ctype,price);
+            gestionMaterielService.addMateriel(c);
+        }
+
+        }
+    public void supprimerMateriel() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Veuillez entrer id de materiel a supprimer");
+        int id = scanner.nextInt();
+
         System.out.println("Materiel " + gestionMaterielService.getMateriel(id).getName() + " Supprimé");
         gestionMaterielService.deleteMateriel(id);
     }
-    public void allouerMateriel(int id,int nbrejrs) { allocationMaterielService.allouerMateriel(id,nbrejrs);}
-    public void rendreMateriel(int id) { allocationMaterielService.rendreMateriel(id);}
+    public void allouerMateriel() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Veuillez entrer id de materiel a allouer");
+        int id = scanner.nextInt();
+        System.out.println("Veuillez entrer nombre de jours");
+        int jrs = scanner.nextInt();
+        allocationMaterielService.allouerMateriel(id,jrs);}
+    public void rendreMateriel() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Veuillez entrer id de materiel a supprimer");
+        int id = scanner.nextInt();
+        allocationMaterielService.rendreMateriel(id);}
+
+    public void modifierMateriel()
+    {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Veuillez entrer type de materiel a modifier, 1 pour livre, 2 pour chaise");
+        int type = scanner.nextInt();
+        System.out.println("Veuillez entrer id de materiel a modifier");
+        int id = scanner.nextInt();
+        if(type == 1)
+        {
+            System.out.println("new id ?");
+            int newid = scanner.nextInt();
+            System.out.println("name ?");
+            String nom = scanner.next();
+            System.out.println("author ?");
+            String author = scanner.next();
+            System.out.println("year ?");
+            String year = scanner.next();
+            System.out.println("plot ?");
+            String plot = scanner.next();
+            Livre l = new Livre(id,nom,author,year ,plot);
+            gestionMaterielService.updateMateriel(id,l);
+        }
+        else if(type == 2)
+        {
+            System.out.println("new id ?");
+            int newid = scanner.nextInt();
+            System.out.println("name ?");
+            String nom = scanner.next();
+            System.out.println("type ?");
+            String ctype = scanner.next();
+            System.out.println("price ?");
+            double price = scanner.nextDouble();
+
+            Chaise c = new Chaise(id,nom,ctype,price);
+            gestionMaterielService.updateMateriel(id,c);
+        }
+    }
     public void afficherMenu() {
         System.out.println("1- pour lister le matériel, entrer 1");
         System.out.println("2- pour ajouter un nouveau matériel, entrer 2");
         System.out.println("3- pour supprimer un matériel, entrer 3");
         System.out.println("4- pour allouer un matériel, entrer 4");
         System.out.println("5- pour rendre un matériel, entrer 5");
+        System.out.println("6- pour modifier un matériel, entrer 6");
         System.out.println("0- pour sortir de l'application, entrer 0");
         Scanner scanner = new Scanner(System.in);
         String next = scanner.next();
@@ -43,58 +131,18 @@ public class GestionMaterielController {
         } else if ("1".equals(next)) {
             listerMateriel();
         } else if ("2".equals(next)) {
-            //traitement pour lire le donnees user
-            System.out.println("Veuillez entrer type de materiel a ajouter, 1 pour livre, 2 pour chaise");
-            int type = scanner.nextInt();
-
-            if(type == 1)
-            {
-                System.out.println("id ?");
-                int id = scanner.nextInt();
-                System.out.println("name ?");
-                String nom = scanner.next();
-                System.out.println("author ?");
-                String author = scanner.next();
-                System.out.println("year ?");
-                String year = scanner.next();
-                System.out.println("plot ?");
-                String plot = scanner.next();
-                Livre l = new Livre(id,nom,author,year ,plot);
-                ajouterMateriel(l);
-            }
-            else if(type == 2)
-            {
-                System.out.println("id ?");
-                int id = scanner.nextInt();
-                System.out.println("name ?");
-                String nom = scanner.next();
-                System.out.println("type ?");
-                String ctype = scanner.next();
-                System.out.println("price ?");
-                double price = scanner.nextDouble();
-
-                Chaise c = new Chaise(id,nom,ctype,price);
-                ajouterMateriel(c);
-            }
-
-
+           ajouterMateriel();
         } else if ("3".equals(next)) {
-            //traitement pour lire donnees
-            System.out.println("Veuillez entrer id de materiel a supprimer");
-            int id = scanner.nextInt();
-            supprimerMateriel(id);
+            supprimerMateriel();
         } else if ("4".equals(next)) {
-            //traitement pour lire donnees
-            System.out.println("Veuillez entrer id de materiel a allouer");
-            int id = scanner.nextInt();
-            System.out.println("Veuillez entrer nombre de jours");
-            int jrs = scanner.nextInt();
-            allouerMateriel(id,jrs);
+            allouerMateriel();
         }
         else if ("5".equals(next)) {
-            //traitement pour lire donnees
-            rendreMateriel(2);
-        } else {
+            rendreMateriel();
+        }
+        else if ("6".equals(next)) {
+            modifierMateriel();
+        }else {
             System.out.println("choix invalide");
         }
     }
