@@ -95,8 +95,6 @@ public class GestionMaterielController {
 
         if(mat instanceof Livre)
         {
-            System.out.println("new id ?");
-            int newid = scanner.nextInt();
             System.out.println("name ?");
             String nom = scanner.next();
             System.out.println("author ?");
