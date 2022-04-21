@@ -1,22 +1,26 @@
 package com.ensa.gi4.service.impl;
 
+import com.ensa.gi4.datatabase.IMaterielDAO;
 import com.ensa.gi4.datatabase.MaterielDAO;
 import com.ensa.gi4.modele.Chaise;
 import com.ensa.gi4.modele.Livre;
 import com.ensa.gi4.modele.Materiel;
 import com.ensa.gi4.service.api.GestionMaterielService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
-
+@Component("gestionMaterielService")
 public class GestionMaterielServiceImpl implements GestionMaterielService {
     // bd goes here
 
-    private MaterielDAO materiel;
+    private IMaterielDAO materiel;
 
 
-    public void setMaterielDao(MaterielDAO materiel) {
-        // injection par accesseur
+    @Autowired
+    public void setMaterielDao(IMaterielDAO materiel) {
+        // injection par accesseur et en utilisant l'interface
         this.materiel = materiel;
     }
 

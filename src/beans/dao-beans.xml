@@ -3,15 +3,15 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="materielDAO" class ="com.ensa.gi4.datatabase.MaterielDAO" factory-method="getInstance"/>
+<!--    <bean id="materielDAO" class ="com.ensa.gi4.datatabase.MaterielDAO" factory-method="getInstance"/>-->
 
-    <bean id="gestionMaterielService" class="com.ensa.gi4.service.impl.GestionMaterielServiceImpl">
-        <property name="materielDao" ref="materielDAO" />
-    </bean>
+<!--    <bean id="gestionMaterielService" class="com.ensa.gi4.service.impl.GestionMaterielServiceImpl">-->
+<!--        <property name="materielDao" ref="materielDAO" />-->
+<!--    </bean>-->
 
 
-    <bean id="allocationMaterielService" class="com.ensa.gi4.service.impl.AllocationMaterielServiceImpl" scope="prototype">
-        <property name="materielDao" ref="materielDAO" />
-    </bean>
+<!--    <bean id="allocationMaterielService" class="com.ensa.gi4.service.impl.AllocationMaterielServiceImpl" scope="prototype">-->
+<!--        <property name="materielDao" ref="materielDAO" />-->
+<!--    </bean>-->
 
 </beans>

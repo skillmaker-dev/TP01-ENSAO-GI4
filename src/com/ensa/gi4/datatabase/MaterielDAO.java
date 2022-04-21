@@ -3,10 +3,12 @@ package com.ensa.gi4.datatabase;
 import com.ensa.gi4.modele.Chaise;
 import com.ensa.gi4.modele.Livre;
 import com.ensa.gi4.modele.Materiel;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Repository
 public class MaterielDAO implements IMaterielDAO {
 
     private static MaterielDAO singleton = new MaterielDAO();

@@ -1,18 +1,22 @@
 package com.ensa.gi4.service.impl;
 
+import com.ensa.gi4.datatabase.IMaterielDAO;
 import com.ensa.gi4.datatabase.MaterielDAO;
 import com.ensa.gi4.modele.Materiel;
 import com.ensa.gi4.service.api.AllocationMaterielService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component("allocationMaterielService")
 public class AllocationMaterielServiceImpl implements AllocationMaterielService {
 
-    private MaterielDAO materiel;
+    private IMaterielDAO materiel;
 
 
-
-    public void setMaterielDao(MaterielDAO materiel) {
+    @Autowired
+    public void setMaterielDao(IMaterielDAO materiel) {
         // injection par accesseur
         this.materiel = materiel;
     }

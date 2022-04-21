@@ -6,27 +6,43 @@ import com.ensa.gi4.modele.Livre;
 import com.ensa.gi4.modele.Materiel;
 import com.ensa.gi4.service.api.AllocationMaterielService;
 import com.ensa.gi4.service.api.GestionMaterielService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
-
+@Component("controller")
 public class GestionMaterielController {
 
     private GestionMaterielService gestionMaterielService;
     private AllocationMaterielService allocationMaterielService;
+    Random random = new Random();
+
+    @Autowired
+    public void setGestionMaterielService(GestionMaterielService gestionMaterielService) {
+        // injection par accesseur et en utilisant l'interface
+        this.gestionMaterielService = gestionMaterielService;
+    }
+    @Autowired
+    public void setAllocationMaterielService(AllocationMaterielService allocationMaterielService) {
+        // injection par accesseur et en utilisant l'interface
+        this.allocationMaterielService = allocationMaterielService;
+    }
+
 
     public void listerMateriel() {
         //gestionMaterielService.getAllMateriels();
         for (Materiel m:
                 gestionMaterielService.getAllMateriels()) {
-            System.out.println(m.getName());
+            System.out.println("Name: " + m.getName() + " Id: " + m.getId());
         }
     }
     public void listerMaterielAlloue()
     {
         for (Materiel m:
                 allocationMaterielService.listerMateriel()) {
-            System.out.println(m.getName());
+            System.out.println("Name: " + m.getName() + " Id: " + m.getId());
         }
     }
     public void ajouterMateriel() {
@@ -36,8 +52,7 @@ public class GestionMaterielController {
 
         if(type == 1)
         {
-            System.out.println("id ?");
-            int id = scanner.nextInt();
+            int id = random.nextInt();
             System.out.println("name ?");
             String nom = scanner.next();
             System.out.println("author ?");
@@ -51,8 +66,7 @@ public class GestionMaterielController {
         }
         else if(type == 2)
         {
-            System.out.println("id ?");
-            int id = scanner.nextInt();
+            int id = random.nextInt();
             System.out.println("name ?");
             String nom = scanner.next();
             System.out.println("type ?");
@@ -160,13 +174,5 @@ public class GestionMaterielController {
         System.exit(0);
     }
 
-    public void setGestionMaterielService(GestionMaterielService gestionMaterielService) {
-        // injection par accesseur
-        this.gestionMaterielService = gestionMaterielService;
-    }
 
-    public void setAllocationMaterielService(AllocationMaterielService allocationMaterielService) {
-        // injection par accesseur
-        this.allocationMaterielService = allocationMaterielService;
-    }
 }
