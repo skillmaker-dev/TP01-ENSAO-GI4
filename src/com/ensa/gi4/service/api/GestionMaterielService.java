@@ -7,9 +7,9 @@ import java.util.List;
 public interface GestionMaterielService {
     void init();
 
-    List<Materiel> getAllMateriels();
-    void addMateriel(Materiel materiel);
-    void deleteMateriel(int id);
-    Materiel getMateriel(int id);
-    void updateMateriel(int id, Materiel materiel);
+    void getAllMateriels();
+    void addMateriel();
+    void deleteMateriel();
+    void getMateriel(int id);
+    void updateMateriel();
 }
